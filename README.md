@@ -1,0 +1,1 @@
+# debezium-oracle-kubernetes-without-operator
