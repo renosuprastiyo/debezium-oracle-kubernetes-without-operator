@@ -1,0 +1,150 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: debezium-zookeeper
+  namespace: big-data
+  labels:
+    app: debezium-zookeeper
+spec:
+  ports:
+    - name: "2181"
+      port: 2181
+      targetPort: 2181
+    - name: "2888"
+      port: 2888
+      targetPort: 2888
+    - name: "3888"
+      port: 3888
+      targetPort: 3888
+  selector:
+    component: debezium-zookeeper
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: debezium-zookeeper
+  namespace: big-data
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      component: debezium-zookeeper
+  template:
+    metadata:
+      labels:
+        component: debezium-zookeeper
+    spec:
+      containers:
+        - image: debezium/zookeeper:latest
+          name: debezium-zookeeper
+          ports:
+            - containerPort: 2181
+            - containerPort: 2888
+            - containerPort: 3888
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: debezium-kafka
+  namespace: big-data
+  labels:
+    app: debezium-kafka
+spec:
+  ports:
+    - name: "9092"
+      port: 9092
+      targetPort: 9092
+  selector:
+    component: debezium-kafka
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: debezium-kafka
+  namespace: big-data
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      component: debezium-kafka
+  template:
+    metadata:
+      labels:
+        component: debezium-kafka
+    spec:
+      containers:
+        - env:
+            - name: ZOOKEEPER_CONNECT
+              value: debezium-zookeeper:2181
+            - name: GROUP_ID
+              value: "1"
+            - name: LISTENERS
+              value: LISTENER_PUBLIC://debezium-kafka:9092,LISTENER_INTERNAL://debezium-kafka:9092
+            - name: ADVERTISED_LISTENERS
+              value: PLAINTEXT://debezium-kafka:9092
+          image: debezium/kafka:latest
+          name: debezium-kafka
+          ports:
+            - containerPort: 9092
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: debezium-connect
+  namespace: big-data
+  labels:
+    app: debezium-connect
+spec:
+  ports:
+    - name: "8083"
+      port: 8083
+      targetPort: 8083
+    - name: "5005"
+      port: 5005
+      targetPort: 5005
+  selector:
+    component: debezium-connect
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: debezium-connect
+  namespace: big-data
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: debezium-connect
+  template:
+    metadata:
+      labels:
+        component: debezium-connect
+    spec:
+      containers:
+        - env:
+            - name: BOOTSTRAP_SERVERS
+              value: debezium-kafka:9092
+            - name: CONFIG_STORAGE_TOPIC
+              value: topic_configs
+            - name: DEBUG_SUSPEND_FLAG
+              value: "n"
+            - name: GROUP_ID
+              value: "1"
+            - name: JAVA_DEBUG_PORT
+              value: 0.0.0.0:5005
+            - name: KAFKA_DEBUG
+              value: "true"
+            - name: LD_LIBRARY_PATH
+              value: /instant_client
+            - name: OFFSET_STORAGE_TOPIC
+              value: topic_offsets
+            - name: STATUS_STORAGE_TOPIC
+              value: topic_statuses
+          image: localhost:5000/debezium:latest
+          name: debezium-connect
+          ports:
+            - containerPort: 8083
+            - containerPort: 5005
+      restartPolicy: Always
