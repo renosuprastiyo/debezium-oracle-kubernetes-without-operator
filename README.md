@@ -16,3 +16,7 @@ First thing we have to setup local registry for docker image we built
 Then build our debezium custom image
 >docker build -f Dockerfile -t localhost:5000/debezium:latest .
 >![build-debezium-custom-image](https://github.com/renosuprastiyo/debezium-oracle-kubernetes-without-operator/blob/main/build-docker-image.png)<br />
+
+Push image to local registry
+>docker push localhost:5000/debezium:latest
+>![push-image](https://github.com/renosuprastiyo/debezium-oracle-kubernetes-without-operator/blob/main/push-image.png)
