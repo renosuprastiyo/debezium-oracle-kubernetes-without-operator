@@ -6,7 +6,7 @@ Using operator to deploy into microservices sometimes too much with much feature
 Here i used docker desktop with enabling kubernetes cluster by Preferences -> Kubernetes -> Enable Kubernetes -> Apply & restart <br />
 You also can using minikube, kubespray to provisioning kubernetes
 ![docker-desktop](https://github.com/renosuprastiyo/debezium-oracle-kubernetes-without-operator/blob/main/docker-desktop.png)
-2. Oracle client <br />
+2. Download oracle client <br />
 You can find it here [instant-client](https://www.oracle.com/database/technologies/instant-client/downloads.html) <br />
 3. Oracle prep <br />
 You can find how to prepare oracle database here [Oracle-Prep](https://debezium.io/documentation/reference/stable/connectors/oracle.html#_preparing_the_database)<br />
