@@ -35,7 +35,7 @@ Let see our pods
 >![get-pod](https://github.com/renosuprastiyo/debezium-oracle-kubernetes-without-operator/blob/main/get-pod.png)<br />
 
 Create kafka connector
->kubectl exec -it debezium-connect-58f569fdfb-w4t2m -n big-data -- curl -i -X POST -H "Accept:application/json" -H "Content-Type:application/json" debezium-connect-58f569fdfb-w4t2m:8083/connectors/ -d @- <<EOF
+>curl -i -X POST -H "Accept:application/json" -H "Content-Type:application/json" debezium-connect-58f569fdfb-w4t2m:8083/connectors/ -d @- <<EOF
 {
     "name": "test-connector",
     "config": {
