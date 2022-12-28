@@ -71,5 +71,4 @@ Create kafka connector
     }
 }
 EOF
-<br />
 >![kafka-connector](https://github.com/renosuprastiyo/debezium-oracle-kubernetes-without-operator/blob/main/kafka-connector.png)
