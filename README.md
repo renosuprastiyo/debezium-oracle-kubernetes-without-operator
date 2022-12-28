@@ -33,3 +33,42 @@ Now we ready to deploy it to kubernetes
 Let see our pods
 >kubectl get po -n big-data
 >![get-pod](https://github.com/renosuprastiyo/debezium-oracle-kubernetes-without-operator/blob/main/get-pod.png)<br />
+
+Create kafka connector
+>kubectl exec -it debezium-connect-58f569fdfb-w4t2m -n big-data -- curl -i -X POST -H "Accept:application/json" -H "Content-Type:application/json" debezium-connect-58f569fdfb-w4t2m:8083/connectors/ -d @- <<EOF
+{
+    "name": "test-connector",
+    "config": {
+        "connector.class": "io.debezium.connector.oracle.OracleConnector",
+        "tasks.max": "1",
+        "database.server.name": "DBMEISTER",
+        "database.oracle.version": "11",
+        "database.hostname": "192.168.0.1",
+        "database.port": "1521",
+        "database.user": "xxxxx",
+        "database.password": "xxxxx",
+        "database.dbname" : "orcltes",
+        "table.include.list": "2000bgr.test",
+        "database.out.server.name": "dboprxout",
+        "include.schema.changes": "true",
+        "snapshot.mode": "initial",
+        "topic.prefix": "dbz-topic",
+        "database.tablename.case.insensitive": "true",
+        "database.history.skip.unparseable.ddl": "true",
+        "errors.log.enable": "true",
+        "database.history.kafka.topic": "schema-changes.inventory",
+        "database.history.kafka.bootstrap.servers": "debezium-kafka:9092",
+        "debezium.log.mining.transaction.retention.hours": "3",
+        "event.processing.failure.handing.mode": "warn",
+        "log.mining.batch.size.default": "100000",
+        "log.mining.batch.size.min": "10000",
+        "log.mining.batch.size.max": "1000000",
+        "log.mining.sleep.time.default": "200",
+        "log.mining.sleep.time.min": "0",
+        "log.mining.sleep.time.max": "1000",
+        "log.mining.sleep.time.increment": "100",
+        "log.mining.scn.gap.detection.gap.size.min": "1000"
+    }
+}
+EOF
+<br />
