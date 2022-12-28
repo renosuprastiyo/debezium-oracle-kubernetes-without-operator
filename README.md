@@ -25,5 +25,9 @@ Create namespace big-data for this project
 >kubectl create namespace big-data<br />
 
 Now we ready to deploy it to kubernetes
->kubectl create -f debezium.yaml
->![deploy-kubernetes](https://github.com/renosuprastiyo/debezium-oracle-kubernetes-without-operator/blob/main/deploy-kubernetes.png)
+>kubectl create -f debezium.yaml<br />
+>![deploy-kubernetes](https://github.com/renosuprastiyo/debezium-oracle-kubernetes-without-operator/blob/main/deploy-kubernetes.png)<br />
+
+Let see our pods
+>kubectl get po -n big-data
+>![get-pod](https://github.com/renosuprastiyo/debezium-oracle-kubernetes-without-operator/blob/main/get-pod.png)<br />
