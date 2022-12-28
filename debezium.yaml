@@ -77,8 +77,6 @@ spec:
         - env:
             - name: ZOOKEEPER_CONNECT
               value: debezium-zookeeper:2181
-            - name: GROUP_ID
-              value: "1"
             - name: LISTENERS
               value: LISTENER_PUBLIC://debezium-kafka:9092,LISTENER_INTERNAL://debezium-kafka:9092
             - name: ADVERTISED_LISTENERS
