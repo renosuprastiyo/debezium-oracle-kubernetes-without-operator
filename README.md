@@ -8,6 +8,8 @@ You also can using minikube, kubespray to provisioning kubernetes
 ![docker-desktop](https://github.com/renosuprastiyo/debezium-oracle-kubernetes-without-operator/blob/main/docker-desktop.png)
 2. Oracle client <br />
 You can find it here [instant-client](https://www.oracle.com/database/technologies/instant-client/downloads.html) <br />
+3. Oracle prep <br />
+You can find how to prepare oracle database here [Oracle-Prep](https://debezium.io/documentation/reference/stable/connectors/oracle.html#_preparing_the_database)<br />
 # Getting Started
 First thing we have to setup local registry for docker image we built
 >docker run -d -p 5000:5000 --restart=always --name registry -e REGISTRY_VALIDATION_DISABLED=true registry:2<br /><br />
