@@ -10,4 +10,4 @@ You also can using minikube, kubespray to provisioning kubernetes
 You can find it here [instant-client](https://www.oracle.com/database/technologies/instant-client/downloads.html) <br />
 # Getting Started
 First thing we have to setup local registry for docker image we built
-<details><summary>Registry</summary><p><br />![local-registry](https://github.com/renosuprastiyo/debezium-oracle-kubernetes-without-operator/blob/main/local-registry.png)</p></details>
+>![local-registry](https://github.com/renosuprastiyo/debezium-oracle-kubernetes-without-operator/blob/main/local-registry.png)
