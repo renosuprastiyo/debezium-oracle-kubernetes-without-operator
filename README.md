@@ -21,5 +21,9 @@ Push image to local registry
 >docker push localhost:5000/debezium:latest<br />
 >![push-image](https://github.com/renosuprastiyo/debezium-oracle-kubernetes-without-operator/blob/main/push-image.png)<br />
 
+Create namespace big-data for this project
+>kubectl create namespace big-data<br />
+
 Now we ready to deploy it to kubernetes
 >kubectl create -f debezium.yaml
+>![deploy-kubernetes](https://github.com/renosuprastiyo/debezium-oracle-kubernetes-without-operator/blob/main/deploy-kubernetes.png
