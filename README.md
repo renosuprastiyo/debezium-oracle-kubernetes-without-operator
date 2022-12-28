@@ -11,4 +11,6 @@ You can find it here [instant-client](https://www.oracle.com/database/technologi
 # Getting Started
 First thing we have to setup local registry for docker image we built
 >docker run -d -p 5000:5000 --restart=always --name registry -e REGISTRY_VALIDATION_DISABLED=true registry:2<br /><br />
->![local-registry](https://github.com/renosuprastiyo/debezium-oracle-kubernetes-without-operator/blob/main/local-registry.png)
+>![local-registry](https://github.com/renosuprastiyo/debezium-oracle-kubernetes-without-operator/blob/main/local-registry.png)<br />
+Then build our debezium custom image
+>docker build -f Dockerfile -t localhost:5000/debezium:latest .
