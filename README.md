@@ -78,6 +78,6 @@ Let see our kafka topic
 >kubectl run kafka-topics -it -n big-data --image=debezium/kafka:latest --rm=true --restart=Never -- bin/kafka-topics.sh --list --bootstrap-server debezium-kafka:9092
 >![kafka-topic](https://github.com/renosuprastiyo/debezium-oracle-kubernetes-without-operator/blob/main/kafka-topic.png)
 
-Now we can consume kafka data
+Finished. Now we can consume data from kafka
 >kubectl run kafka-consumer -it -n big-data --image=debezium/kafka:latest --rm=true --restart=Never -- bin/kafka-console-consumer.sh --bootstrap-server debezium-kafka:9092 --topic xxxxx --from-beginning
 >![kafka-consume](https://github.com/renosuprastiyo/debezium-oracle-kubernetes-without-operator/blob/main/kafka-consume.png)
