@@ -71,4 +71,8 @@ Create debezium connector
     }
 }
 EOF
->![debezium-connector](https://github.com/renosuprastiyo/debezium-oracle-kubernetes-without-operator/blob/main/debezium-connector.png)
+>![debezium-connector](https://github.com/renosuprastiyo/debezium-oracle-kubernetes-without-operator/blob/main/debezium-connector.png)<br />
+
+Let see our kafka topic
+>kubectl run kafka-topics -it -n big-data --image=debezium/kafka:latest --rm=true --restart=Never -- bin/kafka-topics.sh --list --bootstrap-server debezium-kafka:9092
+>![kafka-topic](https://github.com/renosuprastiyo/debezium-oracle-kubernetes-without-operator/blob/main/kafka-topic.png)
