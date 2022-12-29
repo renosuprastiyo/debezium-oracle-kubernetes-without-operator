@@ -35,7 +35,7 @@ Let see our pods
 >![get-pods](https://github.com/renosuprastiyo/debezium-oracle-kubernetes-without-operator/blob/main/get-pods.png)<br />
 
 Create debezium connector
->curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json" debezium-connect-7d45648fbb-rnmml:8083/connectors/ -d @- <<EOF
+>kubectl exec -it debezium-connect-7d45648fbb-rnmml -n big-data -- curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json" debezium-connect-7d45648fbb-rnmml:8083/connectors/ -d @- <<EOF
 {
     "name": "test-connector",
     "config": {
