@@ -35,15 +35,15 @@ Let see our pods
 >![get-pods](https://github.com/renosuprastiyo/debezium-oracle-kubernetes-without-operator/blob/main/get-pods.png)<br />
 
 Create debezium connector
->curl -i -X POST -H "Accept:application/json" -H "Content-Type:application/json" debezium-connect-58f569fdfb-w4t2m:8083/connectors/ -d @- <<EOF
+>curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json" debezium-connect-7d45648fbb-rnmml:8083/connectors/ -d @- <<EOF
 {
     "name": "test-connector",
     "config": {
         "connector.class": "io.debezium.connector.oracle.OracleConnector",
         "tasks.max": "1",
-        "database.server.name": "DBMEISTER",
-        "database.oracle.version": "11",
-        "database.hostname": "192.168.0.1",
+        "database.server.name": "xxxxx",
+        "database.oracle.version": 11,
+        "database.hostname": "xxxxx",
         "database.port": "1521",
         "database.user": "xxxxx",
         "database.password": "xxxxx",
@@ -56,7 +56,7 @@ Create debezium connector
         "database.tablename.case.insensitive": "true",
         "database.history.skip.unparseable.ddl": "true",
         "errors.log.enable": "true",
-        "database.history.kafka.topic": "schema-changes.inventory",
+        "database.history.kafka.topic": "dbz-history-topic",
         "database.history.kafka.bootstrap.servers": "debezium-kafka:9092",
         "debezium.log.mining.transaction.retention.hours": "1",
         "event.processing.failure.handing.mode": "warn",
@@ -71,4 +71,4 @@ Create debezium connector
     }
 }
 EOF
->![kafka-connector](https://github.com/renosuprastiyo/debezium-oracle-kubernetes-without-operator/blob/main/kafka-connector.png)
+>![debezium-connector](https://github.com/renosuprastiyo/debezium-oracle-kubernetes-without-operator/blob/main/debezium-connector.png)
