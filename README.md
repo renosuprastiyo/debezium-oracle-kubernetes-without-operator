@@ -4,7 +4,7 @@ Using operator to deploy into microservices sometimes too much with much feature
 # Prerequisite
 1. Installed kubernetes and docker <br />
 Here i used docker desktop with enabling kubernetes cluster by Preferences -> Kubernetes -> Enable Kubernetes -> Apply & restart <br />
-You also can using minikube, kubespray or native kubernetes(latest kubernetes version no longger suppor docker as container runtime only left cri-o or containerd as container runtime)
+You also can using minikube, kubespray or native kubernetes(latest kubernetes version no longger support docker as container runtime only left cri-o or containerd as container runtime)
 ![docker-desktop](https://github.com/renosuprastiyo/debezium-oracle-kubernetes-without-operator/blob/main/docker-desktop.png)
 2. Download oracle client <br />
 You can find it here [instant-client](https://www.oracle.com/database/technologies/instant-client/downloads.html) <br />
