@@ -62,10 +62,18 @@ spec:
         - env:
             - name: ZOOKEEPER_CONNECT
               value: debezium-zookeeper:2181
+            - name: BROKER_ID
+              value: "1"
             - name: LISTENERS
-              value: LISTENER_PUBLIC://debezium-kafka:9092,LISTENER_INTERNAL://debezium-kafka:9092
+              value: EXTERNAL://:9092,INTERNAL://:29092
             - name: ADVERTISED_LISTENERS
-              value: PLAINTEXT://debezium-kafka:9092
+              value: EXTERNAL://debezium-kafka:9092,INTERNAL://localhost:29092
+            - name: LISTENER_SECURITY_PROTOCOL_MAP
+              value: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+            - name: INTER_BROKER_LISTENER_NAME
+              value: INTERNAL
+            - name: OFFSETS_TOPIC_REPLICATION_FACTOR
+              value: "1"
           image: debezium/kafka:latest
           name: debezium-kafka
           ports:
