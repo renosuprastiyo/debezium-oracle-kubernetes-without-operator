@@ -1,6 +1,6 @@
 ### debezium-oracle-kubernetes-without-operator
 
-Using operator to deploy into microservices sometimes too much with much features we not used actually [Strimzi](https://strimzi.io) for example. So here we using kubernetes manifests only to keep it lean.
+Using operator to deploy into microservices sometimes too much with much features we not used actually [Strimzi](https://strimzi.io) for example. So here we using kubernetes manifests for the sake of simplicity.
 # Prerequisite
 1. Installed kubernetes and docker <br />
 Here i used docker desktop with enabling kubernetes cluster by Preferences -> Kubernetes -> Enable Kubernetes -> Apply & restart <br />
@@ -58,7 +58,7 @@ Create kafka connector
         "errors.log.enable": "true",
         "database.history.kafka.topic": "schema-changes.inventory",
         "database.history.kafka.bootstrap.servers": "debezium-kafka:9092",
-        "debezium.log.mining.transaction.retention.hours": "3",
+        "debezium.log.mining.transaction.retention.hours": "1",
         "event.processing.failure.handing.mode": "warn",
         "log.mining.batch.size.default": "100000",
         "log.mining.batch.size.min": "10000",
