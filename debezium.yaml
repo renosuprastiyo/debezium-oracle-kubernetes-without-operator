@@ -122,7 +122,7 @@ spec:
               value: topic_offsets
             - name: STATUS_STORAGE_TOPIC
               value: topic_statuses
-          image: localhost:5000/debezium:latest
+          image: localhost:5000/debezium_custom:latest
           name: debezium-connect
           ports:
             - containerPort: 8083
