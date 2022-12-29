@@ -1,6 +1,6 @@
 ### debezium-oracle-kubernetes-without-operator
 
-Using operator to deploy into microservices sometimes too much with much features we not used actually [Strimzi](https://strimzi.io) for example. So here we using kubernetes manifests for the sake of simplicity.
+Using operator to deploy into microservices sometimes too much with much features we not used actually [Strimzi](https://strimzi.io) for example. So here we are using kubernetes manifests for the sake of simplicity.
 # Prerequisite
 1. Installed kubernetes and docker <br />
 Here i used docker desktop with enabling kubernetes cluster by Preferences -> Kubernetes -> Enable Kubernetes -> Apply & restart <br />
