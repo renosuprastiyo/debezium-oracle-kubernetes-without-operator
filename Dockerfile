@@ -1,4 +1,4 @@
-FROM debezium/connect:latest
+FROM debezium/connect:1.8.1.Final
 USER root:root
 ENV KAFKA_CONNECT_JDBC_DIR=$KAFKA_CONNECT_PLUGINS_DIR/kafka-connect-jdbc
 ENV INSTANT_CLIENT_DIR=/instant_client/
