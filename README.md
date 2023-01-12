@@ -16,30 +16,41 @@ First thing we have to setup local registry for docker image we built
 ```
 docker run -d -p 5000:5000 --restart=always --name registry -e REGISTRY_VALIDATION_DISABLED=true registry:2
 ```
-<br /><br />
 >![local-registry](https://github.com/renosuprastiyo/debezium-oracle-kubernetes-without-operator/blob/main/local-registry.png)<br />
 
 Then build our debezium custom image
->docker build -f Dockerfile -t localhost:5000/debezium_custom:latest .<br />
+```
+docker build -f Dockerfile -t localhost:5000/debezium_custom:latest .
+```
 >![build-debezium-custom-image](https://github.com/renosuprastiyo/debezium-oracle-kubernetes-without-operator/blob/main/build-docker-image.png)<br />
 
 Push image to local registry
->docker push localhost:5000/debezium_custom:latest<br />
+```
+docker push localhost:5000/debezium_custom:latest
+```
 >![push-image](https://github.com/renosuprastiyo/debezium-oracle-kubernetes-without-operator/blob/main/push-image.png)<br />
 
 Create namespace big-data for this project
->kubectl create namespace big-data<br />
+```
+kubectl create namespace big-data
+```
+<br />
 
 Now we ready to deploy it to kubernetes
->kubectl create -f debezium.yaml<br />
+```
+kubectl create -f debezium.yaml
+```
 >![deploy-kubernetes](https://github.com/renosuprastiyo/debezium-oracle-kubernetes-without-operator/blob/main/deploy-kubernetes.png)<br />
 
 Let see our pods
->kubectl get po -n big-data
+```
+kubectl get po -n big-data
+```
 >![get-pods](https://github.com/renosuprastiyo/debezium-oracle-kubernetes-without-operator/blob/main/get-pods.png)<br />
 
 Create debezium connector
->kubectl exec -it debezium-connect-7d45648fbb-rnmml -n big-data -- curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json" debezium-connect-7d45648fbb-rnmml:8083/connectors/ -d @- <<EOF
+```
+kubectl exec -it debezium-connect-7d45648fbb-rnmml -n big-data -- curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json" debezium-connect-7d45648fbb-rnmml:8083/connectors/ -d @- <<EOF
 {
     "name": "test-connector",
     "config": {
@@ -75,12 +86,17 @@ Create debezium connector
     }
 }
 EOF
+```
 >![debezium-connector](https://github.com/renosuprastiyo/debezium-oracle-kubernetes-without-operator/blob/main/debezium-connector.png)<br />
 
 Let see our kafka topic
->kubectl run kafka-topics -it -n big-data --image=debezium/kafka:latest --rm=true --restart=Never -- bin/kafka-topics.sh --list --bootstrap-server debezium-kafka:9092
+```
+kubectl run kafka-topics -it -n big-data --image=debezium/kafka:latest --rm=true --restart=Never -- bin/kafka-topics.sh --list --bootstrap-server debezium-kafka:9092
+```
 >![kafka-topic](https://github.com/renosuprastiyo/debezium-oracle-kubernetes-without-operator/blob/main/kafka-topic.png)
 
 Finished. Now we can consume data from kafka
->kubectl run kafka-consumer -it -n big-data --image=debezium/kafka:latest --rm=true --restart=Never -- bin/kafka-console-consumer.sh --bootstrap-server debezium-kafka:9092 --topic xxxxx --from-beginning
+```
+kubectl run kafka-consumer -it -n big-data --image=debezium/kafka:latest --rm=true --restart=Never -- bin/kafka-console-consumer.sh --bootstrap-server debezium-kafka:9092 --topic xxxxx --from-beginning
+```
 >![kafka-consume](https://github.com/renosuprastiyo/debezium-oracle-kubernetes-without-operator/blob/main/kafka-consume.png)
