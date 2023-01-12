@@ -13,7 +13,9 @@ You can find it here [instant-client](https://www.oracle.com/database/technologi
 You can find how to prepare oracle database here [Oracle-Prep](https://debezium.io/documentation/reference/stable/connectors/oracle.html#_preparing_the_database)<br />
 # Getting Started
 First thing we have to setup local registry for docker image we built
->docker run -d -p 5000:5000 --restart=always --name registry -e REGISTRY_VALIDATION_DISABLED=true registry:2<br /><br />
+```
+docker run -d -p 5000:5000 --restart=always --name registry -e REGISTRY_VALIDATION_DISABLED=true registry:2
+```<br /><br />
 >![local-registry](https://github.com/renosuprastiyo/debezium-oracle-kubernetes-without-operator/blob/main/local-registry.png)<br />
 
 Then build our debezium custom image
