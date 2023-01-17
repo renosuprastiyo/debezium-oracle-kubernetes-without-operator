@@ -63,7 +63,7 @@ spec:
             - name: ZOOKEEPER_CONNECT
               value: debezium-zookeeper:2181
             - name: BROKER_ID
-              value: "1"
+              value: "2"
             - name: LISTENERS
               value: EXTERNAL://:9092,INTERNAL://:29092
             - name: ADVERTISED_LISTENERS
