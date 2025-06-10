@@ -4,7 +4,7 @@ Debezium is CDC(change data capture) tool mainly used for replication or streami
 Using operator to deploy into microservices sometimes too much with much features we not used actually [Strimzi](https://strimzi.io) for example. So here we are using kubernetes manifests for the sake of simplicity.
 
 # Prerequisite
-1. Installed kubernetes and docker <br />
+1. Installed kubernetes and docker<br />
 Here i used docker desktop with enabling kubernetes cluster by Preferences -> Kubernetes -> Enable Kubernetes -> Apply & restart <br />
 You also can using minikube, kubespray or native kubernetes(latest kubernetes version no longger support docker as container runtime only left cri-o or containerd as container runtime)
 ![docker-desktop](https://github.com/renosuprastiyo/debezium-oracle-kubernetes-without-operator/blob/main/docker-desktop.png)
